@@ -90,7 +90,7 @@ export default function ChatbotWidget() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-110 z-40"
+          className="fixed bottom-6 right-6 bg-sky-600 hover:bg-sky-700 text-white rounded-full p-4 shadow-lg transition-all duration-200 hover:scale-110 z-40"
           aria-label="Open chat"
         >
           <MessageCircle size={24} />
@@ -101,16 +101,16 @@ export default function ChatbotWidget() {
       {isOpen && (
         <div className="fixed bottom-6 right-6 w-96 bg-white rounded-lg shadow-2xl flex flex-col h-96 z-50 border border-gray-200">
           {/* Header */}
-          <div className="bg-blue-600 text-white px-6 py-4 rounded-t-lg flex justify-between items-center">
+          <div className="bg-sky-600 text-white px-6 py-4 rounded-t-lg flex justify-between items-center">
             <div>
               <h3 className="font-semibold text-lg">Sarah</h3>
-              <p className="text-xs text-blue-100">
-                Asisten Responsif Interaktif KKM
+              <p className="text-xs text-sky-100">
+                Hospital Assistant
               </p>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="hover:bg-blue-700 p-1 rounded transition-colors"
+              className="hover:bg-sky-700 p-1 rounded transition-colors"
               aria-label="Close chat"
             >
               <X size={20} />
@@ -141,7 +141,7 @@ export default function ChatbotWidget() {
                 <div
                   className={`max-w-xs px-4 py-2 rounded-lg ${
                     msg.role === "user"
-                      ? "bg-blue-600 text-white rounded-br-none"
+                      ? "bg-sky-600 text-white rounded-br-none"
                       : "bg-gray-200 text-gray-900 rounded-bl-none"
                   }`}
                 >
@@ -149,7 +149,7 @@ export default function ChatbotWidget() {
                   <p
                     className={`text-xs mt-1 ${
                       msg.role === "user"
-                        ? "text-blue-100"
+                        ? "text-sky-100"
                         : "text-gray-500"
                     }`}
                   >
@@ -188,13 +188,13 @@ export default function ChatbotWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-600 text-sm"
                 disabled={isLoading}
               />
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+                className="bg-sky-600 hover:bg-sky-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
               >
                 <Send size={16} />
               </button>

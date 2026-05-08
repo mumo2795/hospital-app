@@ -1,12 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
-
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     const body = await request.json();
     const webhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL;
 
     if (!webhookUrl) {
-      return NextResponse.json(
+      return Response.json(
         { error: "Webhook URL not configured" },
         { status: 500 }
       );
@@ -14,7 +12,6 @@ export async function POST(request: NextRequest) {
 
     console.log("Received request body:", body);
 
-    // The n8n chat expects this specific format
     const payload = {
       chatInput: body.chatInput || body.message || "",
       sessionId: body.sessionId || "",
@@ -22,9 +19,7 @@ export async function POST(request: NextRequest) {
     };
 
     console.log("Sending to n8n:", payload);
-    console.log("Webhook URL:", webhookUrl);
 
-    // Forward the request to n8n
     const response = await fetch(webhookUrl, {
       method: "POST",
       headers: {
@@ -34,13 +29,12 @@ export async function POST(request: NextRequest) {
     });
 
     const data = await response.json();
-
     console.log("n8n Response:", data);
 
-    return NextResponse.json(data, { status: response.status });
+    return Response.json(data, { status: response.status });
   } catch (error) {
     console.error("Chat API error:", error);
-    return NextResponse.json(
+    return Response.json(
       { error: "Failed to process chat request", details: String(error) },
       { status: 500 }
     );
@@ -48,5 +42,5 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET() {
-  return NextResponse.json({ message: "Chat API is running" });
+  return Response.json({ message: "Chat API is running" });
 }
